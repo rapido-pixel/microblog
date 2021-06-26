@@ -60,7 +60,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-
 @app.route('/logout')
 def logout():
     logout_user()
@@ -87,7 +86,7 @@ def before_request():
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_profile():
-    form = EditProfileForm()
+    form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
